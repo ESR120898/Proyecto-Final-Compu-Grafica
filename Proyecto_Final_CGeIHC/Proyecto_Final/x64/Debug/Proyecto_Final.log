@@ -1,0 +1,2 @@
+﻿  glad.c
+C:\Users\Katherine\Documents\GitHub\Proyecto-Final-Compu-Grafica\Proyecto_Final_CGeIHC\Proyecto_Final\glad.c(25,10): fatal error C1083: No se puede abrir el archivo incluir: 'glad/glad.h': No such file or directory

@@ -13,7 +13,9 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <time.h>
 
-#include <irrKlang/irrKlang.h>
+//Librerias de Musica
+#include <irrKlang.h>
+using namespace irrklang;
 
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>	//Texture
@@ -27,7 +29,6 @@
 #include <model.h>
 #include <Skybox.h>
 #include <iostream>
-
 
 //#pragma comment(lib, "winmm.lib")
 
@@ -46,15 +47,15 @@ GLFWmonitor *monitors;
 void getResolution(void);
 
 // camera
-Camera camera(glm::vec3(0.0f, 60.0f, 300.0f));
+Camera camera(glm::vec3(0.0f, 250.0f, 1100.0f));
 float MovementSpeed = 0.1f;
 float lastX = SCR_WIDTH / 2.0f;
 float lastY = SCR_HEIGHT / 2.0f;
 bool firstMouse = true;
 
 //Musica
-using namespace irrklang;
-ISoundEngine *SoundEngine = createIrrKlangDevice ();
+ISoundEngine *SoundEngine = createIrrKlangDevice();
+
 
 // timing
 const int FPS = 60;
@@ -266,7 +267,6 @@ int main()
 	// --------------------
 	monitors = glfwGetPrimaryMonitor();
 	getResolution();
-	//SoundEngine->play2D("audio/breakout.mp3", true);
 
 	GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "CGeIHC", NULL, NULL);
 	if (window == NULL)
@@ -281,6 +281,7 @@ int main()
 	glfwSetCursorPosCallback(window, mouse_callback);
 	glfwSetScrollCallback(window, scroll_callback);
 	glfwSetKeyCallback(window, my_input);
+	SoundEngine->play2D("Musica/Muerte.mp3", true);
 
 	// tell GLFW to capture our mouse
 	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
@@ -305,12 +306,12 @@ int main()
 
 	vector<std::string> faces
 	{
-		"resources/skybox/right.jpg",
-		"resources/skybox/left.jpg",
-		"resources/skybox/top.jpg",
-		"resources/skybox/bottom.jpg",
-		"resources/skybox/front.jpg",
-		"resources/skybox/back2.jpg"
+		"resources/skybox/derecha.jpg",
+		"resources/skybox/izquierda.jpg",
+		"resources/skybox/arriba.jpg",
+		"resources/skybox/abajo.jpg",
+		"resources/skybox/atras.jpg",
+		"resources/skybox/fondo.jpg"
 	};
 
 	Skybox skybox = Skybox(faces);
@@ -658,7 +659,6 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 	//Car animation
 	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
 		animacion ^= true;
-		//SoundEngine->play2D("Musica/muerte.mp3", true);
 
 	//To play KeyFrame animation 
 	if (key == GLFW_KEY_P && action == GLFW_PRESS)
